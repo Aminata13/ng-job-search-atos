@@ -4,29 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 
-			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="txt" placeholder="User name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Sign up</button>
-				</form>
-			</div>
+            <div class="signup">
+                <!-- <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <label for="chk" aria-hidden="true">Sign up</label>
+                    <select formControlName="roles" name="roles">
+                        <option [ngValue]="null" disabled>Select your profile</option>
+                        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                    </select>
+                    <input formControlName="firstName" type="text" name="firstName" placeholder="Firstname" required="">
+                    <input formControlName="lastName" type="text" name="lastName" placeholder="Lastname" required="">
+                    <input formControlName="email" type="email" name="email" placeholder="Email" required="">
+                    <input formControlName="password" type="password" name="pswd" placeholder="Password" required="">
+                    <button type="submit" [ngClass]="{ 'disabled': registerForm.invalid || registerForm.pristine }" [disabled]="registerForm.invalid" >Sign up</button>
+                </form> -->
+            </div>
 
             <div class="login">
-                <form (ngSubmit)="login()">
+                <form *ngIf="!isLoggedIn" name="LoginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                     <label for="chk" aria-hidden="true">Login</label>
-                    <input type="email" name="email" placeholder="Email" required="">
-                    <input type="password" name="pswd" placeholder="Password" required="">
-                    <button type="submit" [ngClass]="{ 'disabled': form.invalid }">Login</button>
+                    <input [(ngModel)]="LoginForm.email" type="email" name="email" placeholder="Email" required #email="ngModel">
+                    <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted" Email is required!></div>
+                    <input [(ngModel)]="LoginForm.password" type="password" name="password" placeholder="Password" required minlength="6" #password="ngModel">
+                    <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+                    </div>
+                    <button  type="submit" [ngClass]="{ 'disabled': LoginForm.invalid }" [disabled]="LoginForm.invalid">Login</button>
+                    <div class="alert alert-danger center" role="alert" *ngIf="f.submitted && isLoginFailed">
+                        Login failed: {{ errorMessage }}
+                    </div>
                 </form>
+            </div>
+            <div class="alert alert-success" *ngIf="isLoggedIn">
+                Logged in as {{ roles }}.
             </div>
 	</div>
 </body>

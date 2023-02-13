@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule
-  ]
+  ],
+  exports: [RegisterComponent],
 })
 export class PublicModule { }
