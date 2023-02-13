@@ -28,7 +28,7 @@ export class AuthService {
       );
   }
 
-  private setSession(authResult: any) {
+  setSession(authResult: any) {
 
       const expiresAt = moment().add(authResult,'milliseconds');
 
