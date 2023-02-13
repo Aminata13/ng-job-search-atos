@@ -21,11 +21,11 @@
 			</div>
 
             <div class="login">
-                <form>
+                <form (ngSubmit)="login()">
                     <label for="chk" aria-hidden="true">Login</label>
                     <input type="email" name="email" placeholder="Email" required="">
                     <input type="password" name="pswd" placeholder="Password" required="">
-                    <button [disabled]="!loginForm.valid">Login</button>
+                    <button type="submit" [ngClass]="{ 'disabled': form.invalid }">Login</button>
                 </form>
             </div>
 	</div>
