@@ -1,0 +1,35 @@
+<mat-card class="mini-card">
+    <mat-card-header>
+      <mat-card-title class="titre">Centres d'intérêt</mat-card-title>
+    </mat-card-header>
+    <mat-accordion class="example-headers-align add-formation">
+        <mat-expansion-panel [expanded]="toggle" (opened)="setStephere" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="titre">
+             Ajouter un centre d'intérêt
+            </mat-panel-title>
+            <mat-panel-description>
+                <span></span>
+                <mat-icon class="add-icon">add</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="column wrap" fxLayoutAlign="center center">
+            <form [formGroup]="addHobby" autocomplete="off" novalidate (ngSubmit)="submitForm()" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Centre d'intérêt" formControlName="name" id="name">
+                    <mat-error *ngIf="ErrorHobby('name', 'required')">centre d'intérêt requis</mat-error>
+                    <mat-error *ngIf="ErrorHobby('name', 'minlength')">Minimim 3 caractères</mat-error>
+                  </mat-form-field>
+                </div>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="modifButton">Modifier</button>
+                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="!modifButton">Ajouter</button>
+              </mat-action-row>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> 
+      <app-hobby-list (update)="updateBefore($event)"></app-hobby-list>
+</mat-card>
+

@@ -1,0 +1,40 @@
+.add-formation{
+    width: 95%;
+    margin: 5px;
+}
+.formation-content{
+    margin: 5px;
+    padding: 5px;
+}
+.formation-label{
+    color: rgba(11, 134, 159, 0.906);
+    display: flex;
+    justify-content: space-between;
+}
+.level{
+    width: 59%;
+}
+.icons,.degree{
+    flex: 1 1 auto;
+}
+.mat-mdc-slider {
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .mat-mdc-card + .mat-mdc-card {
+    margin-top: 8px;
+  }
+ 
+  .mat-mdc-slider.mat-primary {
+    --mdc-slider-handle-color: rgba(11, 134, 159, 0.906);
+    --mdc-slider-focus-handle-color: rgba(11, 134, 159, 0.906);
+    --mdc-slider-hover-handle-color: rgba(11, 134, 159, 0.906);
+    --mdc-slider-active-track-color: rgba(11, 134, 159, 0.906);
+    --mdc-slider-inactive-track-color: rgba(11, 134, 159, 0.906);
+    --mdc-slider-with-tick-marks-active-container-color: #fff;
+    --mdc-slider-with-tick-marks-inactive-container-color: rgba(11, 134, 159, 0.906);
+    --mat-mdc-slider-ripple-color: rgba(11, 134, 159, 0.906);
+    --mat-mdc-slider-hover-ripple-color: rgba(63, 81, 181, 0.05);
+    --mat-mdc-slider-focus-ripple-color: rgba(63, 81, 181, 0.2);
+}

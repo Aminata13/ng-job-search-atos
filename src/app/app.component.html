@@ -1,1 +1,16 @@
 <router-outlet></router-outlet>
+<mat-card>
+    <mat-toolbar class="navbar">
+        <div>
+            <span class="site-title">Job'Offer</span>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="hand"></mat-icon>
+        </div>
+        <div>
+            <span [routerLink]="'/login'">Se connecter</span>
+            <span [routerLink]="'/register'">S'incrire</span>
+        </div>
+    </mat-toolbar>
+</mat-card>
+
+
+

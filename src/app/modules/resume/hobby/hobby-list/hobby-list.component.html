@@ -1,0 +1,11 @@
+<mat-card class="add-formation">
+    <div class="formation-content" *ngFor="let h of hobbies">
+      <div class="formation-label"> 
+              <div><h4 class="degree">{{h.name}}</h4></div>
+              <div>
+                <mat-icon (click)="updateHobby(h.id)">mode_edit</mat-icon>
+                <mat-icon (click)="deleteHobbyById(h.id)">delete</mat-icon>
+              </div>  
+      </div>
+  </div>
+</mat-card>

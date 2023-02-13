@@ -1,0 +1,27 @@
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.resume-left {
+    width: 55%;
+    float: left;
+    padding: 20px;
+}
+.resume-right {
+    width: 40%;
+    float: left;
+    padding: 20px;
+    margin-left: 2%;
+}
+.resume-principal{
+    margin: 10px;
+}
+.user-info{
+    width: 95%;
+    margin: 2%;
+    border-radius: 0% 0% 10% 10%;
+}
+img {
+    border-radius: 50%;
+}

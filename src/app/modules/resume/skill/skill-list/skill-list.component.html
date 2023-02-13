@@ -1,0 +1,21 @@
+<mat-card class="add-formation">
+    <div class="formation-content" *ngFor="let s of skills">
+      <div class="formation-label"> 
+              <div><h4 class="degree">{{s.name}}</h4></div>
+              <div class="level">
+                <mat-slider
+                class="level"
+                [disabled]="disabled"
+                [max]="max"
+                [min]="min"
+                [step]="step">  
+                <input matSliderThumb [value]="value">
+                </mat-slider>
+              </div>
+              <div>
+                <mat-icon (click)="updateSkill(s.id)">mode_edit</mat-icon>
+                <mat-icon (click)="deleteSkillById(s.id)">delete</mat-icon>
+              </div>  
+      </div>
+  </div>
+</mat-card>

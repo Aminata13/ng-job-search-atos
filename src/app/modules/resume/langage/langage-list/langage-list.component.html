@@ -1,0 +1,10 @@
+<mat-card class="add-formation">
+    <div class="formation-content" *ngFor="let l of langages">
+      <div class="formation-label"> 
+              <h4 class="degree">{{l.name}}  <span  class="formation-school">{{l.level}}</span></h4>
+              <mat-icon (click)="updateLangage(l.id)">mode_edit</mat-icon>
+              <mat-icon (click)="deleteLangageById(l.id)">delete</mat-icon>
+      </div>
+      <mat-divider></mat-divider>
+  </div>
+</mat-card>

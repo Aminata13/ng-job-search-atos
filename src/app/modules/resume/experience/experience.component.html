@@ -1,0 +1,60 @@
+<mat-card class="mini-card">
+    <mat-card-header>
+      <mat-card-title class="titre">Expérience</mat-card-title>
+    </mat-card-header>
+    <mat-accordion class="example-headers-align add-formation">
+        <mat-expansion-panel [expanded]="open" (opened)="setStep1" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="titre">
+             Ajouter une expérience
+            </mat-panel-title>
+            <mat-panel-description>
+                <span></span>
+                <mat-icon class="add-icon">add</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="column wrap" fxLayoutAlign="center center">
+            <form [formGroup]="addExperience" autocomplete="off" novalidate (ngSubmit)="submitForm()" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Poste" formControlName="function" id="function">
+                    <mat-error *ngIf="Error('function', 'required')">Poste requis</mat-error>
+                    <mat-error *ngIf="Error('function', 'minlength')">Minimim 3 caractères</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Société" formControlName="companyName" id="companyName">
+                    <mat-error *ngIf="Error('companyName', 'required')">Société requis</mat-error>
+                    <mat-error *ngIf="Error('companyName', 'minlength')">Minimum 3 caractères</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="start" placeholder="Date de début" formControlName="startDate" id="startDate" 
+                        readonly (click)="start.open()">
+                        <mat-error *ngIf="Error('startDate', 'required')">Date de début requise</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                    <mat-datepicker #start></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="end" placeholder="Date de fin" formControlName="endDate" id="endDate" 
+                        readonly (click)="end.open()">
+                    <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                    <mat-datepicker #end></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput type="textarea" placeholder="Détails" formControlName="realisation" id="realisation"></textarea>
+                        <mat-error *ngIf="Error('realisation', 'minlength')">Minimum 3 caractères</mat-error>
+                    </mat-form-field>
+                </div>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="!addExperience.valid" *ngIf="modifButton">Modifier</button>
+                <button mat-raised-button [disabled]="!addExperience.valid" *ngIf="!modifButton">Ajouter</button>
+              </mat-action-row>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> 
+    <app-experience-list (update)="updateBefore($event)"></app-experience-list>
+</mat-card>

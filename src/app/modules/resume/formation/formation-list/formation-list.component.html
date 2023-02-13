@@ -1,0 +1,20 @@
+<mat-card class="add-formation">
+      <div class="formation-content" *ngFor="let f of formations">
+        <div class="formation-label"> 
+                <h4 class="degree">{{f.degree}} en {{f.name}}</h4>
+                <mat-icon (click)="updateFormation(f.id)">mode_edit</mat-icon>
+                <mat-icon (click)="deleteFormationById(f.id)">delete</mat-icon>
+        </div>
+        <div class="formation-place">
+            <span class="formation-school">{{f.schoolName}}</span>  {{f.schoolCity}}
+        </div>
+        <div class="formation-date">
+            <div class="formation-date-dot"></div>
+            <span class="formation-date-label">
+                De <span class="start-date">{{f.startDate | date: 'MM/yyyy'}}</span> 
+                à <span class="end-date">{{f.endDate | date: 'MM/yyyy'}}</span>
+            </span>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</mat-card>

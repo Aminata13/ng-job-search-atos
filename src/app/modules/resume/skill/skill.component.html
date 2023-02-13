@@ -1,0 +1,50 @@
+<mat-card class="mini-card">
+    <mat-card-header>
+      <mat-card-title class="titre">Compétences</mat-card-title>
+    </mat-card-header>
+    <mat-accordion class="example-headers-align add-formation">
+        <mat-expansion-panel [expanded]="stepskill" (opened)="setStepskill" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="titre">
+             Ajouter une compétence
+            </mat-panel-title>
+            <mat-panel-description>
+                <span></span>
+                <mat-icon class="add-icon">add</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="column wrap" fxLayoutAlign="center center">
+            <form [formGroup]="addskill" autocomplete="off" novalidate (ngSubmit)="submitForm()" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Compétence (ex: Python)" formControlName="name" id="name">
+                    <mat-error *ngIf="hasErrorskill('name', 'required')">Compétence requise</mat-error>
+                    <mat-error *ngIf="hasErrorskill('name', 'minlength')">Minimim 3 caractères</mat-error>
+                  </mat-form-field>
+                  <div class="example-label-container">
+                    <label id="example-name-label" class="example-name-label">Niveau</label>
+                    <mat-error *ngIf="hasErrorskill('level', 'required')">Niveau requis</mat-error>
+                  </div>
+                  <mat-slider
+                      class="example-margin"
+                      [disabled]="disabled"
+                      [max]="max"
+                      [min]="min"
+                      [step]="step"
+                      [discrete]="thumbLabel"
+                      [showTickMarks]="showTicks">
+                    <input matSliderThumb formControlName="level" id="level">
+                  </mat-slider>
+                </div>
+                <div>  
+                </div>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="!addskill.valid" *ngIf="modifButton">Modifier</button>
+                <button mat-raised-button [disabled]="!addskill.valid" *ngIf="!modifButton">Ajouter</button>
+              </mat-action-row>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> 
+      <app-skill-list (update)="updateBeforeskill($event)"></app-skill-list>
+</mat-card>

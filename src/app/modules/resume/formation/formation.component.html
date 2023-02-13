@@ -1,0 +1,66 @@
+<mat-card  class="mini-card">
+    <mat-card-header>
+      <mat-card-title class="titre">Diplômes et Formations</mat-card-title>
+    </mat-card-header>
+    <mat-accordion class="example-headers-align add-formation">
+        <mat-expansion-panel [expanded]="step" (opened)="setStep" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="titre">
+             Ajouter une formation
+            </mat-panel-title>
+            <mat-panel-description>
+                <span></span>
+                <mat-icon class="add-icon">add</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="column wrap" fxLayoutAlign="center center">
+            <form [formGroup]="addFormation" autocomplete="off" novalidate (ngSubmit)="submitForm()" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Diplôme" formControlName="degree" id="degree" (value)="formation">
+                    <mat-error *ngIf="hasError('degree', 'required')">Diplôme requis</mat-error>
+                    <mat-error *ngIf="hasError('degree', 'minlength')">Minimim 3 caractères</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Nom de la formation" formControlName="name" id="name">
+                    <mat-error *ngIf="hasError('name', 'required')">Nom de la formation requis</mat-error>
+                    <mat-error *ngIf="hasError('name', 'minlength')">Minimum 7 caractères</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Ecole" formControlName="schoolName" id="schoolName">
+                    <mat-error *ngIf="hasError('schoolName', 'required')">Ecole requis</mat-error>
+                    <mat-error *ngIf="hasError('schoolName', 'minlength')">Minimum 5 caractères</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Lieu" formControlName="schoolCity" id="schoolCity">
+                    <mat-error *ngIf="hasError('schoolCity', 'required')">Lieu requis</mat-error>
+                    <mat-error *ngIf="hasError('schoolCity', 'minlength')">Minimum 5 caractères</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="start" placeholder="Date de début" formControlName="startDate" id="startDate" 
+                        readonly (click)="start.open()">
+                        <mat-error *ngIf="hasError('schoolCity', 'required')">Date de début requise</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                    <mat-datepicker #start></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="end" placeholder="Date de fin" formControlName="endDate" id="endDate" 
+                        readonly (click)="end.open()">
+                    <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                    <mat-datepicker #end></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="!addFormation.valid" *ngIf="modifButton">Modifier</button>
+                <button mat-raised-button [disabled]="!addFormation.valid" *ngIf="!modifButton">Ajouter</button>
+              </mat-action-row>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> 
+      <app-formation-list (update)="updateBefore($event)"></app-formation-list>
+</mat-card>

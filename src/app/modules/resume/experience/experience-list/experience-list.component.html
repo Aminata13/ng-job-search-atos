@@ -1,0 +1,20 @@
+<mat-card class="add-formation">
+    <div class="formation-content" *ngFor="let e of experiences">
+      <div class="formation-label"> 
+              <h4 class="degree">{{e.function}} à <span  class="formation-school">{{e.companyName}}</span></h4>
+              <mat-icon (click)="updateExperience(e.id)">mode_edit</mat-icon>
+              <mat-icon (click)="deleteExperienceById(e.id)">delete</mat-icon>
+      </div>
+      <div class="formation-place">
+          <span class="">{{e.realisation}}</span>  
+      </div>
+      <div class="formation-date">
+          <div class="formation-date-dot"></div>
+          <span class="formation-date-label">
+              De <span class="start-date">{{e.startDate | date: 'MM/yyyy'}}</span> 
+              à <span class="end-date">{{e.endDate | date: 'MM/yyyy'}}</span>
+          </span>
+      </div>
+      <mat-divider></mat-divider>
+  </div>
+</mat-card>
