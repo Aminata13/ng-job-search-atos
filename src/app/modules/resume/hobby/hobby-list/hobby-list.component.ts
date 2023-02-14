@@ -1,6 +1,8 @@
 import {Component,EventEmitter, Input, Output } from '@angular/core';
 import { Hobby } from '../interface/hobby.interface';
 import { HobbyService } from '../interface/hobby.service';
+import { Subject } from "rxjs";
+
 
 @Component({
   selector: 'app-hobby-list',
@@ -10,12 +12,19 @@ import { HobbyService } from '../interface/hobby.service';
 export class HobbyListComponent {
   hobbies: Hobby[] = [];
   @Input() hobby: any;
+  @Input() resetFormSubject: Subject<boolean> = new Subject<boolean>();
   @Output() update: EventEmitter<number> = new EventEmitter();
   
   constructor(private hobbyService: HobbyService) {
     this.getHobbys();
 }
-
+ngOnInit(){
+  this.resetFormSubject.subscribe(response => {
+     if(response){
+     this.getHobbys();
+   }
+  })
+ }
 
   getHobbys() {
     this.hobbyService.getHobbys().subscribe(

@@ -23,13 +23,13 @@
                   </mat-form-field>
                 </div>
               <mat-action-row>
-                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="modifButton">Modifier</button>
-                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="!modifButton">Ajouter</button>
+                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="modifButton" (click)="resetChildForm()">Modifier</button>
+                <button mat-raised-button [disabled]="!addHobby.valid" *ngIf="!modifButton" (click)="resetChildForm()">Ajouter</button>
               </mat-action-row>
             </form>
           </div>
         </mat-expansion-panel>
       </mat-accordion> 
-      <app-hobby-list (update)="updateBefore($event)"></app-hobby-list>
+      <app-hobby-list (update)="updateBefore($event)" [resetFormSubject]="resetFormSubject"></app-hobby-list>
 </mat-card>
 

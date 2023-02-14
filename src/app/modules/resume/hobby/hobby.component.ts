@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hobby } from './interface/hobby.interface';
 import { HobbyService } from './interface/hobby.service';
+import { Subject } from "rxjs";
+
 
 @Component({
   selector: 'app-hobby',
@@ -10,13 +12,17 @@ import { HobbyService } from './interface/hobby.service';
   styleUrls: ['./hobby.component.scss']
 })
 export class HobbyComponent {
-
+  refresh=false;
   toggle = false;
   hobby: Hobby | null = null;
   hobbyId: string | null = null;
   toUpdatehobby: Hobby | null = null;
   modifButton= false;
+  resetFormSubject: Subject<boolean> = new Subject<boolean>();
 
+  resetChildForm(){
+    this.resetFormSubject.next(true);
+  }
   setStephere() {
     this.toggle = !this.toggle;
   }
@@ -51,6 +57,7 @@ export class HobbyComponent {
       this.hobbyService.createHobby(hobby).subscribe(
         (result) => {
           this.router.navigate(["/resume"]);
+          this.refresh=true
         }
       )
     }
