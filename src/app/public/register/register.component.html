@@ -1,1 +1,14 @@
-<p>register works!</p>
+<div class="signup">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <!-- <select formControlName="role" name="role">
+            <option [ngValue]="null" disabled>Select your profile</option>
+            <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+        </select> -->
+        <input formControlName="firstName" type="text" name="firstName" placeholder="Firstname" required="">
+        <input formControlName="lastName" type="text" name="lastName" placeholder="Lastname" required="">
+        <input formControlName="email" type="email" name="email" placeholder="Email" required="">
+        <input formControlName="password" type="password" name="pswd" placeholder="Password" required="">
+        <button type="submit" [ngClass]="{ 'disabled': registerForm.invalid || registerForm.pristine }" [disabled]="registerForm.invalid" >Sign up</button>
+    </form>
+</div>
